@@ -1,6 +1,6 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/manikandancode/qrporter/main/src/poottu/resources/icon.ico" 
-       alt="QRPorter App Icon" width="120"/>
+  <img src="https://raw.githubusercontent.com/manikandancode/poottu/main/src/poottu/resources/icon.ico" 
+       alt="Poottu App Icon" width="120"/>
 </p>
 
 # Poottu Password Manager
