@@ -17,6 +17,9 @@
 
 A fast, privacy-first, offline desktop password manager for Windows, macOS, and Linux. Poottu stores credentials locally with strong, authenticated encryption and offers a clean, modern UI with helpful workflows like live search, context-menu copy, timed clipboard clearing, and encrypted backup/restore.
 
+![Poottu_main_window](https://github.com/user-attachments/assets/bef45d35-41e7-489c-9379-b6236fbd5419)
+
+
 ## Features
 
 - Secure, offline-by-default local vault with modern, authenticated encryption.
@@ -43,8 +46,14 @@ Poottu (பூட்டு, pronounced Poo-ttu) means “lock” in Tamil, symbo
 ## Screenshots
 
 - Unlock dialog with modern card design and show/hide toggles.
-- Main window with Groups, live Search, Entries table, and Preview panel.
+- ![Poottu_master_password_unlock](https://github.com/user-attachments/assets/ae9b630d-dcae-4c55-9f11-464c3198df77)
+
+- Manage Gruops Window.
+- ![Poottu_manage_groups](https://github.com/user-attachments/assets/ed346e76-ed6f-4a02-a643-d8197bd5bea3)
+
 - Add/Edit Entry
+- ![Poottu_Add_entry](https://github.com/user-attachments/assets/36dd6ba2-df64-4859-af9a-0fd390d768e9)
+
 
 ## Getting Started
 
