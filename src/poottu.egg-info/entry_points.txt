@@ -1,0 +1,5 @@
+[console_scripts]
+poottu = poottu.main:main
+
+[gui_scripts]
+Poottu = poottu.main:main
