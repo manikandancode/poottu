@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/manikandancode/qrporter/main/assets/icon.png" 
+  <img src="https://raw.githubusercontent.com/manikandancode/qrporter/main/src/poottu/resources/icon.ico" 
        alt="QRPorter App Icon" width="120"/>
 </p>
 
@@ -25,6 +25,10 @@ A fast, privacy-first, offline desktop password manager for Windows, macOS, and 
   - Ctrl+R: Restore
   - F2: Edit selected entry
   - Delete: Delete selected entry
+
+## Why the name “Poottu”?
+
+Poottu (பூட்டு, pronounced Poo-ttu) means “lock” in Tamil, symbolizing security and protection. The name reflects the app’s purpose: a simple, safe, and trusted password manager.
 
 ## Screenshots
 
