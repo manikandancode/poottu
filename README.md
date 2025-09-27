@@ -3,7 +3,9 @@
        alt="Poottu App Icon" width="120"/>
 </p>
 
-# Poottu Password Manager![Poottu](https://img.shields.io/badge/Poottu-Password%20Manager-4a86ff?style=for-the-badge&logo=qt&logoColor=white)
+# Poottu Password Manager
+
+![Poottu](https://img.shields.io/badge/Poottu-Password%20Manager-4a86ff?style=for-the-badge&logo=qt&logoColor=white)
 [![License: MIT](https://img.shields.io/badge/License-MIT-2ea44f?style=for-the-badge)](#license)
 [![Website](https://img.shields.io/badge/Website-due.im%2Fpoottu-0aa77e?style=for-the-badge)](https://due.im/poottu/)
 [![GitHub](https://img.shields.io/badge/GitHub-manikandancode%2Fpoottu-161b22?style=for-the-badge&logo=github)](https://github.com/manikandancode/poottu)
