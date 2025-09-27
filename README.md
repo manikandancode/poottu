@@ -3,7 +3,17 @@
        alt="Poottu App Icon" width="120"/>
 </p>
 
-# Poottu Password Manager
+# Poottu Password Manager![Poottu](https://img.shields.io/badge/Poottu-Password%20Manager-4a86ff?style=for-the-badge&logo=qt&logoColor=white)
+[![License: MIT](https://img.shields.io/badge/License-MIT-2ea44f?style=for-the-badge)](#license)
+[![Website](https://img.shields.io/badge/Website-due.im%2Fpoottu-0aa77e?style=for-the-badge)](https://due.im/poottu/)
+[![GitHub](https://img.shields.io/badge/GitHub-manikandancode%2Fpoottu-161b22?style=for-the-badge&logo=github)](https://github.com/manikandancode/poottu)
+![Python](https://img.shields.io/badge/Python-3.12%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![OS](https://img.shields.io/badge/OS-Windows%20%7C%20macOS%20%7C%20Linux-6c757d?style=for-the-badge)
+![Offline](https://img.shields.io/badge/Offline-First-6f42c1?style=for-the-badge)
+[![Release](https://img.shields.io/github/v/release/manikandancode/poottu?style=for-the-badge)](https://github.com/manikandancode/poottu/releases)
+[![Downloads](https://img.shields.io/github/downloads/manikandancode/poottu/total?style=for-the-badge)](https://github.com/manikandancode/poottu/releases)
+[![PyPI - Package](https://img.shields.io/pypi/v/poottu?style=for-the-badge)](https://pypi.org/project/poottu/)
+![Status](https://img.shields.io/badge/Status-Stable-28a745?style=for-the-badge)
 
 A fast, privacy-first, offline desktop password manager for Windows, macOS, and Linux. Poottu stores credentials locally with strong, authenticated encryption and offers a clean, modern UI with helpful workflows like live search, context-menu copy, timed clipboard clearing, and encrypted backup/restore.
 
