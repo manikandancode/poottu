@@ -183,7 +183,7 @@ class EntryDialog(QDialog):
         layout.addWidget(self.username_edit)
 
         self.password_edit = QLineEdit()
-        self.password_edit.setEchoMode(QLineEdit.Normal)  # show while typing
+        self.password_edit.setEchoMode(QLineEdit.Normal)  
         layout.addWidget(QLabel("Password:"))
         layout.addWidget(self.password_edit)
 
@@ -195,7 +195,7 @@ class EntryDialog(QDialog):
         self.btn_generate_pw.clicked.connect(self._open_generator)
 
         self.old_password_edit = QLineEdit()
-        self.old_password_edit.setEchoMode(QLineEdit.Normal)  # show while typing
+        self.old_password_edit.setEchoMode(QLineEdit.Normal)  
         layout.addWidget(QLabel("Old Password:"))
         layout.addWidget(self.old_password_edit)
 
@@ -227,7 +227,7 @@ class EntryDialog(QDialog):
         btn_layout.addWidget(cancel_btn)
         layout.addLayout(btn_layout)
 
-        # Hook Save through validation
+        
         save_btn.clicked.connect(self._on_save)
         cancel_btn.clicked.connect(self.reject)
 
@@ -290,10 +290,10 @@ class EntryDialog(QDialog):
             self._make_blank()
 
     def _validate(self):
-        # Reset any prior error styles
+        
         for w in (self.title_edit, self.username_edit, self.password_edit):
             w.setStyleSheet("")
-        # Check mandatory fields
+        
         group_ok = bool(self.group_combo.currentText().strip())
         title_ok = bool(self.title_edit.text().strip())
         user_ok = bool(self.username_edit.text().strip())

@@ -42,7 +42,6 @@ class UnlockWindow(QDialog):
         subtitle.setObjectName("subtitle")
         subtitle.setAlignment(Qt.AlignHCenter)
 
-        # Password label + field with show/hide
         pwd_label = QLabel("Master password")
         self.pass_field = QLineEdit()
         self.pass_field.setEchoMode(QLineEdit.Password)
@@ -75,7 +74,6 @@ class UnlockWindow(QDialog):
         btn_row.addWidget(btn_cancel)
         btn_row.addWidget(btn_unlock)
 
-        # Assemble card
         card_layout.addWidget(title)
         card_layout.addWidget(subtitle)
         card_layout.addSpacing(8)
@@ -84,12 +82,10 @@ class UnlockWindow(QDialog):
         card_layout.addWidget(self.error)
         card_layout.addLayout(btn_row)
 
-        # Center the card
         root.addStretch(1)
         root.addWidget(card, 0, Qt.AlignHCenter)
         root.addStretch(1)
 
-        # Apply stylesheet
         self.setStyleSheet(self._modern_style())
 
     def accept(self):
@@ -109,8 +105,7 @@ class UnlockWindow(QDialog):
             self.error.setText(f"Error: {e}")
 
     def _modern_style(self) -> str:
-        # Force subtitle to a visible neutral color for both themes.
-        # Using explicit hex avoids palette(mid) pitfalls on some styles.
+
         return """
         QDialog {
             background: palette(window);

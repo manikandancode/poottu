@@ -20,13 +20,12 @@ class MainWindow(QMainWindow):
         self.setWindowTitle("Poottu Password Manager")
         self.resize(900, 600)
 
-        # Timed clipboard clear (default 30s; 0 disables)
         self.clipboard_clear_secs = 30
         self.clipboard_timer = QTimer(self)
         self.clipboard_timer.setSingleShot(True)
         self.clipboard_timer.timeout.connect(self.clear_clipboard_safely)
 
-        # Clipboard HUD (toast)
+        
         self.clipboard_hud = QLabel("", self)
         self.clipboard_hud.setObjectName("clipboardHud")
         self.clipboard_hud.setAlignment(Qt.AlignCenter)
@@ -38,10 +37,10 @@ class MainWindow(QMainWindow):
 
         self.current_entries = []
 
-        # Menu Bar
+        
         self.create_menu_bar()
 
-        # Top bar with Search
+        
         top_widget = QWidget()
         top_layout = QHBoxLayout(top_widget)
         top_layout.setContentsMargins(8, 4, 8, 4)
@@ -54,7 +53,6 @@ class MainWindow(QMainWindow):
         top_layout.addWidget(QLabel("Search:"))
         top_layout.addWidget(self.search_edit)
 
-        # Central container and splitters
         central_container = QWidget()
         central_v = QVBoxLayout(central_container)
         central_v.setContentsMargins(0, 0, 0, 0)
@@ -64,16 +62,16 @@ class MainWindow(QMainWindow):
         central_splitter.setChildrenCollapsible(False)
         central_v.addWidget(central_splitter)
 
-        # Groups tree (left)
+        # Groups
         self.groups_tree = QTreeWidget()
         self.groups_tree.setHeaderLabel("Groups")
         central_splitter.addWidget(self.groups_tree)
 
-        # Right side splitter (Entry list + Preview)
+        # Right side splitter
         right_splitter = QSplitter(Qt.Vertical)
         right_splitter.setChildrenCollapsible(False)
 
-        # Entry list (top-right)
+        # Entry list
         self.entry_table = QTableWidget()
         self.entry_table.setColumnCount(7)
         self.entry_table.setHorizontalHeaderLabels(["Title", "Username", "Password", "Old Password", "URL", "Notes", "Expires"])
@@ -83,7 +81,7 @@ class MainWindow(QMainWindow):
         self.entry_table.customContextMenuRequested.connect(self.show_entry_context_menu)
         right_splitter.addWidget(self.entry_table)
 
-        # Preview (bottom-right)
+        # Preview
         self.preview_widget = QWidget()
         preview_layout = QVBoxLayout(self.preview_widget)
         self.preview_title = QLabel("Title: N/A")
@@ -138,7 +136,6 @@ class MainWindow(QMainWindow):
         delete_shortcut.triggered.connect(self._delete_current_row)
         self.addAction(delete_shortcut)
 
-        # Initial load and selection
         self.load_groups()
         general_item = None
         for i in range(self.groups_tree.topLevelItemCount()):
@@ -156,7 +153,6 @@ class MainWindow(QMainWindow):
         menu_bar = self.menuBar()
         file_menu = menu_bar.addMenu("File")
 
-        # Order: Add Entry, Edit Groups, Backup, Restore
         add_entry_action = QAction("Add Entry", self)
         add_entry_action.setShortcut("Ctrl+N")
         add_entry_action.triggered.connect(self.add_entry)
@@ -177,13 +173,11 @@ class MainWindow(QMainWindow):
         restore_action.triggered.connect(lambda: import_encrypted_backup(self, self.db))
         file_menu.addAction(restore_action)
 
-        # Clipboard submenu for timed clear
         clipboard_menu = file_menu.addMenu("Clipboard")
         cfg_clip_action = QAction("Configure Clear Timer…", self)
         cfg_clip_action.triggered.connect(self.configure_clipboard_timer)
         clipboard_menu.addAction(cfg_clip_action)
 
-        # About above Exit
         file_menu.addSeparator()
         about_action = QAction("About", self)
         about_action.triggered.connect(self.show_about_dialog)
@@ -241,7 +235,6 @@ class MainWindow(QMainWindow):
         QApplication.clipboard().clear(QClipboard.Mode.Clipboard)
 
     def _install_hud_styles(self):
-        # Neutral dark glass style (Qt stylesheets don’t support CSS @media)
         self.clipboard_hud.setStyleSheet("""
             #clipboardHud {
                 background: rgba(30, 30, 30, 180);
@@ -294,13 +287,11 @@ class MainWindow(QMainWindow):
             if data["title"] and data["password"]:
                 self.db.add_entry(**data)
                 target = data["group"]
-                # Sync left pane selection with the target group
                 for i in range(self.groups_tree.topLevelItemCount()):
                     it = self.groups_tree.topLevelItem(i)
                     if it.text(0) == target:
                         self.groups_tree.setCurrentItem(it)
                         break
-                # Refresh entries for that group and keep search filter
                 self.load_entries(target)
                 self.apply_search_filter()
 
@@ -429,7 +420,7 @@ class MainWindow(QMainWindow):
         elif action == act_copy_notes:
             self.copy_field(entry_id, "notes")
 
-    # -------- Shortcut helpers (Edit/Delete row) --------
+    # -------- Shortcut helpers--------
     def _current_selected_entry_id(self):
         selected = self.entry_table.selectedItems()
         if not selected:
@@ -455,13 +446,11 @@ class MainWindow(QMainWindow):
             return
         value = entry.get(field, "") or ""
         QApplication.clipboard().setText(value)
-        # Arm timed clear if enabled (>0)
         secs = getattr(self, "clipboard_clear_secs", 0) or 0
         if secs > 0:
             if self.clipboard_timer.isActive():
                 self.clipboard_timer.stop()
             self.clipboard_timer.start(secs * 1000)
-        # Show HUD feedback
         self._show_clipboard_hud(secs)
 
     def edit_selected_entry(self, entry_id: int):

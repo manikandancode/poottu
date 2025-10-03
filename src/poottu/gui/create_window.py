@@ -25,14 +25,14 @@ class CreateWindow(QDialog):
         root.setContentsMargins(24, 24, 24, 24)
         root.setSpacing(16)
 
-        # Card container
+        
         card = QWidget()
         card.setObjectName("card")
         card_layout = QVBoxLayout(card)
         card_layout.setContentsMargins(24, 24, 24, 24)
         card_layout.setSpacing(16)
 
-        # Header
+        
         title = QLabel("Create your vault")
         tfont = QFont()
         tfont.setPointSize(16)
@@ -48,7 +48,7 @@ class CreateWindow(QDialog):
         hint.setObjectName("hint")
         hint.setWordWrap(True)
 
-        # Password 1
+        
         p1_label = QLabel("Enter master password")
         self.pass1 = QLineEdit()
         self.pass1.setEchoMode(QLineEdit.Password)
@@ -60,7 +60,7 @@ class CreateWindow(QDialog):
         row1.addWidget(self.pass1)
         row1.addWidget(self.show1)
 
-        # Password 2
+        
         p2_label = QLabel("Confirm master password")
         self.pass2 = QLineEdit()
         self.pass2.setEchoMode(QLineEdit.Password)
@@ -73,12 +73,12 @@ class CreateWindow(QDialog):
         row2.addWidget(self.pass2)
         row2.addWidget(self.show2)
 
-        # Error label
+        
         self.error = QLabel("")
         self.error.setObjectName("error")
         self.error.setWordWrap(True)
 
-        # Buttons
+        
         btn_row = QHBoxLayout()
         btn_row.addStretch(1)
         btn_create = QPushButton("Create")
@@ -89,7 +89,7 @@ class CreateWindow(QDialog):
         btn_row.addWidget(btn_cancel)
         btn_row.addWidget(btn_create)
 
-        # Assemble
+        
         card_layout.addWidget(title)
         card_layout.addWidget(subtitle)
         card_layout.addSpacing(6)
@@ -145,7 +145,7 @@ class CreateWindow(QDialog):
             self.error.setText(f"Error creating vault: {e}")
 
     def _modern_style(self) -> str:
-        # Use explicit neutral colors for subtitle and hint to ensure readability in both themes
+        
         return """
         QDialog {
             background: palette(window);

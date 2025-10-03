@@ -14,7 +14,7 @@ class Database:
     def init_tables(self):
         cur = self.conn.cursor()
 
-        # Groups table: only encrypted name + blind index (no plaintext name column)
+        
         cur.execute("""
             CREATE TABLE IF NOT EXISTS groups (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -25,14 +25,14 @@ class Database:
             )
         """)
 
-        # Ensure encrypted "General" exists
+        
         gen_idx = blind_index(self.key, "general")
         cur.execute("SELECT id FROM groups WHERE name_index = ?", (gen_idx,))
         if cur.fetchone() is None:
             gen_enc = encrypt(self.key, "General")
             cur.execute("INSERT INTO groups (name_enc, name_index) VALUES (?, ?)", (gen_enc, gen_idx))
 
-        # Entries table (unchanged schema)
+        
         cur.execute("""
             CREATE TABLE IF NOT EXISTS entries (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -53,13 +53,13 @@ class Database:
 
         self.conn.commit()
 
-    # -------- Groups (encrypted) --------
+    
     def add_group(self, name):
         cur = self.conn.cursor()
         norm = (name or "").strip().lower()
         name_enc = encrypt(self.key, name or "")
         name_idx = blind_index(self.key, norm)
-        # Insert or update ciphertext for idempotency
+        
         cur.execute("INSERT OR IGNORE INTO groups (name_enc, name_index) VALUES (?, ?)", (name_enc, name_idx))
         cur.execute("UPDATE groups SET name_enc = ?, modified = CURRENT_TIMESTAMP WHERE name_index = ?", (name_enc, name_idx))
         self.conn.commit()
@@ -69,23 +69,23 @@ class Database:
         old_idx = blind_index(self.key, (old_name or "").strip().lower())
         new_idx = blind_index(self.key, (new_name or "").strip().lower())
         new_enc = encrypt(self.key, new_name or "")
-        # Update the row matched by old name_index
+        
         cur.execute("""
             UPDATE groups
             SET name_enc = ?, name_index = ?, modified = CURRENT_TIMESTAMP
             WHERE name_index = ?
         """, (new_enc, new_idx, old_idx))
-        # entries reference group_id; no change needed there
+        
         self.conn.commit()
 
     def delete_group(self, name):
         cur = self.conn.cursor()
-        # Move entries to General then delete the group
+        
         gen_idx = blind_index(self.key, "general")
         cur.execute("SELECT id FROM groups WHERE name_index = ?", (gen_idx,))
         row = cur.fetchone()
         if row is None:
-            # Recreate General if somehow missing
+            
             self.add_group("General")
             cur.execute("SELECT id FROM groups WHERE name_index = ?", (gen_idx,))
             row = cur.fetchone()
@@ -110,12 +110,12 @@ class Database:
             result.append({"id": gid, "name": name})
         return result
 
-    # -------- Entries --------
+    
     def add_entry(self, **kwargs):
         group_name = kwargs.pop('group')
         cur = self.conn.cursor()
 
-        # Resolve group_id via name_index of normalized name
+        
         norm = (group_name or "").strip().lower()
         gidx = blind_index(self.key, norm)
         cur.execute("SELECT id FROM groups WHERE name_index = ?", (gidx,))
