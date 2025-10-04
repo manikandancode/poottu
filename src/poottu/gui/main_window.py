@@ -10,7 +10,7 @@ from poottu.gui.dialogs import GroupDialog, EntryDialog
 from poottu.core.database import Database
 from poottu.utils.backup import export_encrypted_backup, import_encrypted_backup
 
-APP_VERSION = "1.0.0"
+APP_VERSION = "1.0.1"
 PROJECT_URL = "https://due.im/poottu/"
 
 class MainWindow(QMainWindow):
